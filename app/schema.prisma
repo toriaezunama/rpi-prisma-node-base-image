@@ -1,0 +1,16 @@
+datasource db {
+  provider      = "postgres"
+  url           = "postgresql://USER:PASSWORD@HOST:5432/DATABASE?schema=public"
+  binaryTargets = ["debian-openssl-1.1.x"]
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./client"
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+}
